@@ -1,4 +1,4 @@
-function mainContent() {
+function MainContent() {
     return (
         <div>
            <main>
@@ -8,4 +8,4 @@ function mainContent() {
     );
 }
 
-export default mainContent;
+export default MainContent;

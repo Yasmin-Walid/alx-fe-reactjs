@@ -1,4 +1,4 @@
-function footerMessage() {
+function Footer() {
     return (
         <div>
             <footer>
@@ -8,4 +8,4 @@ function footerMessage() {
     );
 }
 
-export default footerMessage;
+export default Footer;

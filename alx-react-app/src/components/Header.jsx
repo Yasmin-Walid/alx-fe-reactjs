@@ -1,4 +1,4 @@
-function headerMessage() {
+function Header() {
     return (
         <div>
             <header>
@@ -8,4 +8,4 @@ function headerMessage() {
     );
 }
 
-export default headerMessage;
+export default Header;
