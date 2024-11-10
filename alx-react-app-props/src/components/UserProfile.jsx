@@ -1,5 +1,5 @@
-import React from React
 import UserContext from './UserContext'; 
+import React from 'react';
 
 
  const UserProfile = () => {
