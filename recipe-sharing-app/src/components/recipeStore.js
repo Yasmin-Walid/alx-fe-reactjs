@@ -4,6 +4,7 @@ const useRecipeStore = create((set) => ({
   recipes: [],
   addRecipe: (newRecipe) => set((state) => ({
     recipes: [...state.recipes, newRecipe],
+    setRecipes: (recipes) => set({ recipes }),
     addFavorite: (recipeId) => set(state => ({ favorites: [...state.favorites, recipeId] })),
     removeFavorite: (recipeId) => set(state => ({
       favorites: state.favorites.filter(id => id !== recipeId)
