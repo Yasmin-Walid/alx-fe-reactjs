@@ -1,8 +1,6 @@
-module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // You can set it to 'media' or 'class' if needed
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+export const content = ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'];
+export const darkMode = false;
+export const theme = {
+  extend: {},
 };
+export const plugins = [];
