@@ -9,9 +9,9 @@ const AddRecipeForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  // Handle input changes using target.value
+  const handleInputChange = (event) => {
+    const { name, value } = event.target; // Explicitly extracting target.value
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -33,8 +33,8 @@ const AddRecipeForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (validateForm()) {
       console.log("Form Data Submitted:", formData);
       // Clear form after submission
@@ -55,7 +55,7 @@ const AddRecipeForm = () => {
             type="text"
             name="title"
             value={formData.title}
-            onChange={handleInputChange}
+            onChange={handleInputChange} // Uses target.value
             className={`w-full p-2 border rounded ${
               errors.title ? "border-red-500" : "border-gray-300"
             }`}
@@ -72,7 +72,7 @@ const AddRecipeForm = () => {
           <textarea
             name="ingredients"
             value={formData.ingredients}
-            onChange={handleInputChange}
+            onChange={handleInputChange} // Uses target.value
             className={`w-full p-2 border rounded ${
               errors.ingredients ? "border-red-500" : "border-gray-300"
             }`}
@@ -91,7 +91,7 @@ const AddRecipeForm = () => {
           <textarea
             name="steps"
             value={formData.steps}
-            onChange={handleInputChange}
+            onChange={handleInputChange} // Uses target.value
             className={`w-full p-2 border rounded ${
               errors.steps ? "border-red-500" : "border-gray-300"
             }`}
