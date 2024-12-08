@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {useParams, useNavigate} from 'react-router-dom';
+
 
 const RecipeComponent = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -23,6 +27,10 @@ const RecipeComponent = () => {
     fetchRecipes();
   }, []);
 
+ const handleRecipeDetail = (id) =>{
+  navigate (`/recipe/${id}`);
+ };
+
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>{error}</p>;
 
@@ -31,7 +39,7 @@ const RecipeComponent = () => {
     <h1 className="text-3xl font-bold mb-6 text-center text-green-800">Recipes</h1>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:grid-cols-2 lg:grid-cols-3">
       {recipes.map((recipe) => (
-        <div key={recipe.id} className="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow max-w-md ">
+        <div key={recipe.id} className="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition-shadow max-w-md " onClick = {() => handleRecipeDetail (recipe.id)}>
           <img
             src={recipe.image}
             alt={recipe.title}
