@@ -1,37 +1,39 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import React, { useState } from "react";
 
-export const AddRecipeForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const AddRecipeForm = () => {
+  const [title, setTitle] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [steps, setSteps] = useState("");
+  const [error, setError] = useState(null);
 
-  const onSubmit = (data) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title || !ingredients || !steps) {
+      setError("All fields are required!");
+      return;
+    }
+
+    // Example: log the new recipe (you can replace this with actual logic to save the data)
     console.log({
-      title: data.title,
-      ingredients: data.ingredients.split(","),
-      steps: data.steps,
+      title,
+      ingredients: ingredients.split(","),
+      steps,
     });
 
-    reset();
+    // Clear the form
+    setTitle("");
+    setIngredients("");
+    setSteps("");
+    setError(null);
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-green-600 rounded-lg shadow-md">
-        <h1 className="text-white text-center mb-6 font-bold text-3xl"> Add a new Recipe</h1>
-      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <div >
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl text-center mb-6">Add a New Recipe</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {error && <p className="text-red-500">{error}</p>}
 
-        <label htmlFor="title"  className="text-white text-center mb-6 font-bold text-xl" > Recipe Title</label>
-       
-        <input id = "title" {...register("title", { required: "Title is Required" })} />
-
-        {errors.title && <p className="text-white-500 text-sm mt-1">{errors.title.message}</p>}
-
-        </div>
         <div>
           <label className="block text-lg font-semibold mb-2">Title</label>
           <input
@@ -42,9 +44,36 @@ export const AddRecipeForm = () => {
             placeholder="Enter recipe title"
           />
         </div>
-    
-        <input type="submit" />
+
+        <div>
+          <label className="block text-lg font-semibold mb-2">Ingredients</label>
+          <textarea
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            className="w-full p-2 border rounded"
+            placeholder="Enter ingredients separated by commas"
+          ></textarea>
+        </div>
+
+        <div>
+          <label className="block text-lg font-semibold mb-2">Steps</label>
+          <textarea
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
+            className="w-full p-2 border rounded"
+            placeholder="Enter preparation steps"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+        >
+          Add Recipe
+        </button>
       </form>
     </div>
   );
 };
+
+export default AddRecipeForm;
