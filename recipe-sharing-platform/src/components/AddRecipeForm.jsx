@@ -31,6 +31,16 @@ export const AddRecipeForm = () => {
         {errors.title && <p className="text-white-500 text-sm mt-1">{errors.title.message}</p>}
 
         </div>
+        <div>
+          <label className="block text-lg font-semibold mb-2">Title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full p-2 border rounded"
+            placeholder="Enter recipe title"
+          />
+        </div>
     
         <input type="submit" />
       </form>
