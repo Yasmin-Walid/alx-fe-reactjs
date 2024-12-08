@@ -9,8 +9,12 @@ export const AddRecipeForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form Data", data);
-    alert("Recipe Added Successfully");
+    console.log({
+      title: data.title,
+      ingredients: data.ingredients.split(","),
+      steps: data.steps,
+    });
+
     reset();
   };
 
