@@ -105,7 +105,7 @@ const AddRecipeForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hover:shadow-xl max-w-md "
         >
           Add Recipe
         </button>
