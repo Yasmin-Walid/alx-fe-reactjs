@@ -4,7 +4,7 @@ import {useParams, useNavigate} from 'react-router-dom'
 import axios from "axios";
 
 const RecipeDetail = () => {
-  const [recipe, setRecipes] = useState([]);
+  const [recipe, setRecipes] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -15,6 +15,7 @@ const RecipeDetail = () => {
       try {
         const response = await axios.get("/src/data.json");
         const foundRecipe = response.data.find((recipe) => recipe.id === parseInt(id));
+        console.log("Fetched Recipe:", recipe);
 
         setRecipes(foundRecipe);
         setError(null);
@@ -37,20 +38,20 @@ const RecipeDetail = () => {
 
   return(
 <div className=" container mx-auto p-6">
-    <h1 className="text-3xl text-center mb-6">{recipe.title}</h1>
+    <h1 className="text-3xl text-center mb-6 font-semibold">{recipe.title}</h1>
     <img 
      src= {recipe?.image}
      alt={recipe?.title}
-     className="w-full h-80 object-cover rounded-lg"
+     className="w-full h-80 object-cover rounded-lg hover:shadow-xl"
     />
 
     <div className="mt-4">
-        <h2 className="text-3xl text-green-800"> Summary </h2>
+        <h2 className="text-3xl text-green-800 font-semibold"> Summary </h2>
         <p className="text-black-800"> {recipe.summary}</p>
     </div>
 
-    <div className="mt-6">
-    <h2 className="text-3xl text-green-800"> Ingredients </h2>
+    <div className="mt-6 -4 ">
+    <h2 className="text-3xl text-green-800 font-semibold"> Ingredients </h2>
     <ul>
     {recipe.ingredients?.map((ingredient,index) => (
         <li key = {index}>{ingredient}</li>
@@ -60,7 +61,7 @@ const RecipeDetail = () => {
     </div>
 
     <div className="mt-6">
-    <h2 className="text-3xl text-green-800"> Cooking Instructions</h2>
+    <h2 className="text-3xl text-green-800 font-semibold"> Cooking Instructions</h2>
     <p className="text-black-800"> {recipe.instructions}</p>
 
     </div>
