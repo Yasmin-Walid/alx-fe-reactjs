@@ -73,7 +73,7 @@ const Search = () => {
           <img
             src={userData.avatar_url}
           />
-          <h2>{userData.name || "No Name Available"}</h2>
+          <h2>{userData.login || "No Name Available"}</h2>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             Visit GitHub Profile
           </a>
