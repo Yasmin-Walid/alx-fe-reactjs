@@ -14,8 +14,7 @@ const Search = () => {
 
 
     const handleInputChange = (event) => {
-        const { value} = event.target;
-        setUsername(value);
+        setUsername(event.target.value);
         setErrors ("");
 
     };
@@ -44,7 +43,7 @@ const Search = () => {
                 setErrors ("Looks like we cant find the user");
             } finally {
                 setLoading (false);
-            }
+            };
     };
     
   
@@ -69,12 +68,17 @@ const Search = () => {
         {errors && <p style={{ color: 'red' }}>{errors}</p>}
         {loading && <p>Loading...</p>}
 
-        <div> 
-            <img src = {userData.avatar_url} /> 
-            <p> {userData.name} </p>
-            <a href = {userData.html_url} /> 
+        {userData && ( 
+        <div>
+          <img
+            src={userData.avatar_url}
+          />
+          <h2>{userData.name || "No Name Available"}</h2>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            Visit GitHub Profile
+          </a>
         </div>
-
+      )}
 
     </form>
 
