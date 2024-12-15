@@ -6,12 +6,28 @@ const Form = () => {
     ingredients: "",
     steps: "",
   });
-  const [errors, setErros] = useState({});
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.title) newErrors.title = "Title is required";
+    if (!formData.ingredients) newErrors.ingredients = "Ingredients are required";
+    if (!formData.steps) newErrors.steps = "Steps are requires";
+    setErrors(newErrors);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+       if (validateForm()){
+        setFormData ({title: "",ingredients: "", steps: ""})
+       }
+    
   };
 
   return (
@@ -20,7 +36,7 @@ const Form = () => {
         Add a new recipe
       </h1>
 
-      <form className=" mt-6 ml-">
+      <form className=" mt-6 ml-" onSubmit = {handleSubmit} >
 
         <div className="mt-3  flex flex-col  w-full gap-2">
         <lable className="mr-3">Title:</lable>
@@ -31,6 +47,7 @@ const Form = () => {
           value={formData.title}
           onChange={handleInputChange}
         />
+        <p className="text-red-500">{errors.title}</p>
         </div>
 
         <div className="mt-3 flex flex-col  w-full gap-2">
@@ -43,6 +60,8 @@ const Form = () => {
           value={formData.ingredients}
           onChange={handleInputChange}
         />
+        <p className="text-red-500" >{errors.ingredients}</p>
+
         </div>
 
         <div className="mt-3 flex flex-col  w-full gap-2">
@@ -54,6 +73,8 @@ const Form = () => {
           value={formData.steps}
           onChange={handleInputChange}
         />
+        <p className="text-red-500">{errors.steps}</p>
+
         </div>
 
       <div className="mt-6 text-center justify-center">
