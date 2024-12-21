@@ -26,7 +26,6 @@ const Search = () => {
     event.preventDefault();
     if (validateForm()) {
       setLoading(true);
-      console.log("Searching for user:", username);
       setTimeout(() => {
         setLoading(false);
         setUsername("");
