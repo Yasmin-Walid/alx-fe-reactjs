@@ -22,7 +22,7 @@ const Search = () => {
     setErrors(newError);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
       setLoading(true);
@@ -34,7 +34,7 @@ const Search = () => {
     }
 
     try {
-      const data = fetchUserData(username, location, minimumRepositories);
+      const data = await fetchUserData(username, location, minimumRepositories);
       setUserData(data);
     } catch (err) {
       setErrors("Looks like we cant find the user");
