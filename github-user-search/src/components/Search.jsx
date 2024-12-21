@@ -90,6 +90,8 @@ const Search = () => {
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             Visit GitHub Profile
           </a>
+          <p>{userData.location || "No Location Available"}</p>
+          <p>{userData.public_repos|| "No Minimum Repositories Available"}</p>
         </div>
       )}
     </form>
