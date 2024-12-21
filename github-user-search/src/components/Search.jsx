@@ -3,8 +3,6 @@ import { useState } from "react";
 import fetchUserData from "../services/githubService";
 import axios from "axios";
 
-
-
 const Search = () => {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
@@ -76,7 +74,7 @@ const Search = () => {
         placeholder="Enter minimum Repositpries"
       />
 
-      <div >
+      <div>
         <button className="ml-5 bg-green-500 mt-5">Search</button>
       </div>
 
@@ -91,7 +89,23 @@ const Search = () => {
             Visit GitHub Profile
           </a>
           <p>{userData.location || "No Location Available"}</p>
-          <p>{userData.public_repos|| "No Minimum Repositories Available"}</p>
+          <p>{userData.public_repos || "No Minimum Repositories Available"}</p>
+        </div>
+      )}
+
+      {userData && Array.isArray(userData) && (
+        <div>
+          {userData.map((user) => (
+            <div key={user.id}>
+              <img src={userData.avatar_url} />
+              <h3> {user.login} </h3>
+              <p>{user.location}</p>
+              <p>Repos: {user.public_repos}</p>
+              <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+                Visit GitHub Profile
+              </a>
+            </div>
+          ))}
         </div>
       )}
     </form>
