@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 
-const fetchUserData = async (username, location, minimumRepositories) => {
+const fetchUserData = async (username, location, minRepos) => {
   try {
     let query = username ? `username: ${username}` : "";
     if (location) {
       query += `location: ${location}`;
     }
-    if (minimumRepositories) {
-      query = +`minimumRepositories:${minimumRepositories}`;
+    if (minRepos) {
+      query = +`minimumRepositories:${minRepos}`;
     }
 
     const response = await axios.get(

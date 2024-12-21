@@ -34,7 +34,7 @@ const Search = () => {
     }
 
     try {
-      const data = await fetchUserData(username, location, minimumRepositories);
+      const data = await fetchUserData(username, location, minRepos);
       setUserData(data);
     } catch (err) {
       setErrors("Looks like we cant find the user");
@@ -70,7 +70,7 @@ const Search = () => {
         type="text"
         className="mt-5"
         name="Repositpries"
-        value={minimumRepositories}
+        value={minRepos}
         placeholder="Enter minimum Repositpries"
       />
 
